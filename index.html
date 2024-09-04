@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        #errorImage {
+            display: none;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <button id="surpriseButton">ここをクリックしてね</button>
+    <script>
+        // ページ全体を赤色に激しく光らせる関数
+        function flashRed() {
+            document.body.style.backgroundColor = 'red';
+            setTimeout(() => {
+                document.body.style.backgroundColor = 'white';
+            }, 100);
+        }
+
+        // ページにエラー画像を追加する関数
+        function addErrorImage() {
+            const img = document.createElement('img');
+            img.src = 'error.png'; // 画像ファイル名
+            img.style.position = 'absolute';
+            img.style.top = Math.random() * window.innerHeight + 'px';
+            img.style.left = Math.random() * window.innerWidth + 'px';
+
+            // ランダムに画像のサイズを変更
+            const size = Math.random() * 200 + 50; // 50pxから250pxの間でランダムなサイズ
+            img.style.width = size + 'px';
+            img.style.height = size + 'px';
+
+            document.body.appendChild(img);
+        }
+
+        // ボタンがクリックされたときの処理
+        document.getElementById('surpriseButton').addEventListener('click', () => {
+            // 100ミリ秒ごとに点滅させる
+            setInterval(flashRed, 200);
+            // 一定の間隔でエラー画像を追加
+            setInterval(addErrorImage, 500);
+        });
+    </script>
+</body>
+</html>
